@@ -1,0 +1,167 @@
+body{
+    margin: 0px;
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+}
+
+  .container-fluid {
+    padding: 60px 50px;
+  }
+
+/* Header */
+.jumbotron { 
+    /*background-color: #531253;*/
+    background-image: url(Image/art-backlight-blur-249203.jpg);
+    color: #ffffff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+  margin-bottom: 0;
+ /* background-color: #531253;*/
+     background-image: url(Image/art-backlight-blur-249203.jpg);
+  z-index: 9999;
+  border: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px !important;
+  line-height: 1.42857143 !important;
+  letter-spacing: 4px;
+  border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: #f4511e !important;
+  background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #fff !important;
+}
+
+
+.carousel-control.right, .carousel-control.left {
+  background-image: none;
+  color: #00115b;;
+}
+
+.carousel-indicators li {
+  border-color: #00115b;
+}
+
+.carousel-indicators li.active {
+  background-color: #00115b;
+}
+
+.item h4 {
+  font-size: 19px;
+  line-height: 1.375em;
+  font-weight: 400;
+  font-style: italic;
+  margin: 70px 0;
+}
+
+.item span {
+  font-style: normal;
+}
+
+
+.logo-small {
+    color: #00115b;
+    font-size: 50px;
+  }
+  .logo {
+    color: #00115b;
+    font-size: 200px;
+  }
+
+@media screen and (max-width: 768px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+}
+
+
+footer .glyphicon {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.signinmodaltitle{
+   font-family: Montserrat, sans-serif;
+    
+}
+
+.si_usernamebox{
+    
+    margin-left: 15%;
+    width: 70%;
+    border-style: none;
+    box-shadow: none;
+    border-bottom: 1px solid #531253;
+}
+
+.si_passwordbox{
+    
+    margin-left: 15%;
+    width: 70%;
+    border-style: none;
+    box-shadow: none;
+    border-bottom: 1px solid #531253;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none; 
+}
+
+.btn-primaryp{
+    background-color: #00092a;
+    border: none;
+    color: white;
+    border-radius: 25px;
+   padding: 8px 30px;
+}
+.btn-primaryp:hover{
+    background-color: #001774;
+    color: white;
+    
+}
+
+.modal-primary{
+    background-color: #00092a;/*#136f63;*/
+    color: white;
+}
+
+.custom-bg-fotter{
+    background-color: #00092a;
+}
+
+.btn-primarysignup{
+    background-color: #00092a;
+    border: none;
+    color: white;
+    border-radius: 30px;
+    padding: 15px 28px;
+    font-family: Montserrat, sans-serif;
+    border-bottom-style: solid;
+    border-bottom-color: darkslategrey;
+    border-bottom-width: 2px;
+}
+.btn-primarysignup:hover{
+    background-color: #001774;
+    color: white;
+    
+}
+
+
+
