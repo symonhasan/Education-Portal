@@ -121,13 +121,14 @@ if( isset($_POST['signup_btn']) ){
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Custom CSS -->
 
-    <link rel="stylesheet" href="CSS/home.css">
+
+      <link rel="stylesheet" href="CSS/home.css">
 
 
     <!-- Font -->
@@ -139,7 +140,7 @@ if( isset($_POST['signup_btn']) ){
 
 </head>
 
-<body>
+<body style="background-color: #cfccd6;">
 
     <!-- Page Header -->
 
@@ -150,7 +151,7 @@ if( isset($_POST['signup_btn']) ){
 
     <!-- Navigation Bar -->
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="margin-right : 20px;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -209,7 +210,7 @@ if( isset($_POST['signup_btn']) ){
                         }
                         else if( $Error_No == -3  ){
                             echo '<div class="alert alert-success text-center">
-                                      <strong>Success</strong> Please Sign In<strong>To Continue</strong>
+                                      <strong>Success</strong> Please <span> <a href="" data-toggle="modal" data-target="#signinmodal">Sign In </a> </span><strong>To Continue</strong>
                             </div>';
 
 
@@ -226,20 +227,47 @@ if( isset($_POST['signup_btn']) ){
         </div>
     </div>
 
-    <!-- Container (About Section) -->
-    <div id="about" class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-8 text-center">
-                <h2>About Education Portal</h2><br>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <br><button class="btn btn-primarysignup text-center" data-toggle="modal" data-target="#signupmodal">Signup Now</button>
+          <?php
+          $user_query = mysqli_query(mysqli_connect('localhost','root','','datacenter'),"Select * from class as C,user_info as UI Where C.server_id=UI.server_id and C.privacy='public'" );
 
 
-            </div>
-            <div class="col-sm-4">
-                <span class="glyphicon glyphicon-education logo"></span>
-            </div>
+        while( $row = mysqli_fetch_array($user_query) )
+        {
+          /* ef271b */
+
+            $ec = 0;
+            $cld = $row['class_id'];
+            $q = mysqli_query(mysqli_connect('localhost','root','','datacenter'),"Select * from enroll_count where class_id=$cld" );
+
+            while( $r = mysqli_fetch_array( $q ) )
+            {
+              $ec = $r['member'];
+            }
+
+          echo '<div class="col-sm-4">';
+              echo '<img src="CSS/Image/book.jpg" alt="class photo" style="width:100%; border-radius: 2%;">';
+              echo '<h3 style="color: #197bbd; font-family: Montserrat, sans-serif; letter-spacing: 3px; ">'.$row['title'].'</h3>';
+              echo '<h4 style="color: #ef271b; font-family: Montserrat, sans-serif; letter-spacing: 2px; ">Instructor : <em>'.$row['first_name'].' '.$row['last_name'].'</em></h4>';
+              echo '<h4 style="color: #ef271b; font-family: Montserrat, sans-serif; letter-spacing: 2px; ">Mail : <em>'.$row['email'].'</em></h4>';
+              echo '<h4 style="color: #0eb1d2; font-family: Montserrat, sans-serif; letter-spacing: 2px; ">Enrolled User: <em>'.$ec.'</em></h4>';
+              echo '<div class="text-center">';
+              echo '<button class="btn btn-primary text-center" data-toggle="modal" data-target="#signinmodal">Enroll Now</button>';
+              echo '</div>';
+              echo '<br>';
+
+              /*echo '<form action="" method="POST">
+
+                  <div class="form-group text-center">
+                      <button data-toggle="modal" data-target="#signinmodal" name="enroll_btn" class="btn btn-primary"><span><i class="fas fa-plus"></i></span> Enroll</button>
+                  </div>
+
+              </form>';
+*/
+          echo '</div>';
+        }
+          ?>
         </div>
     </div>
 
@@ -272,7 +300,9 @@ if( isset($_POST['signup_btn']) ){
                         <div class="form-group text-center">
                             <button type="submit" name="signin_btn" class="btn btn-primaryp">Sign In</button>
                         </div>
-
+                        <div class="text-center">
+                            <a href="" data-dismiss="modal" data-toggle="modal" data-target="#signupmodal"> Don't have any account? Sign Up </a>
+                        </div>
                     </form>
                     <br>
                     <div class="modal-footer">
@@ -339,54 +369,6 @@ if( isset($_POST['signup_btn']) ){
         </div>
     </div>
 
-
-
-        <!-- Features Slide -->
-        <div id="features" class="container-fluid text-center bg-grey">
-            <h2>Features</h2>
-            <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <h4>"This company is the best. I am so happy with the result!"<br><span style="font-style:normal;">Michael Roe, Vice President, Comment Box</span></h4>
-                    </div>
-                    <div class="item">
-                        <h4>"One word... WOW!!"<br><span style="font-style:normal;">John Doe, Salesman, Rep Inc</span></h4>
-                    </div>
-                    <div class="item">
-                        <h4>"Could I... BE any more happy with this company?"<br><span style="font-style:normal;">Chandler Bing, Actor, FriendsAlot</span></h4>
-                    </div>
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-
-
-
-<!--
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Launch
-    Modal Login Form</a>
-</div>
--->
-
-
         <footer class="container-fluid text-center custom-bg-fotter">
             <a href="index.php" title="To Top">
                 <span class="glyphicon glyphicon-chevron-up"></span>
@@ -394,34 +376,7 @@ if( isset($_POST['signup_btn']) ){
             <p>A Service Made By <strong>UAP_INFINITY</strong></p>
         </footer>
 
-        <script>
-            $(document).ready(function() {
-                // Add smooth scrolling to all links in navbar + footer link
-                $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
-                    // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "") {
-
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-
-                        // Store hash
-                        var hash = this.hash;
-
-                        // Using jQuery's animate() method to add smooth page scroll
-                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 900, function() {
-
-                            // Add hash (#) to URL when done scrolling (default click behavior)
-                            window.location.hash = hash;
-                        });
-                    } // End if
-                });
-            })
-
-        </script>
 
 </body>
 
